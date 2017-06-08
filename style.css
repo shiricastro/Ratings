@@ -38,8 +38,8 @@ form input{
     border-radius: 10%;
     cursor: pointer; 
 }
-div.container-reviews div.rates{
-    
+form label span.star{
+    cursor: pointer;   
 }
 div.rates{
     display: flex;
@@ -53,4 +53,5 @@ div.rates span.rates-pass{
 div.rates:last-child span.rates-pass{
     background-image: linear-gradient(to right, currentColor 40%, white 40%);
 }
+
 
