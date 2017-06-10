@@ -48,10 +48,12 @@ div.rates{
 div.rates span.rates-pass{
     flex-grow: 1;
     margin: 0 .5em;
-    background-image: linear-gradient(to right, currentColor 60%, white 40%);
+    color:white;
+    font-size: 0.8rem;
+    vertical-align: text-bottom;
+    padding-left: 1rem;
+    padding-top: .2rem;
 }
-div.rates:last-child span.rates-pass{
-    background-image: linear-gradient(to right, currentColor 40%, white 40%);
-}
+
 
 

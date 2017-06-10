@@ -7,7 +7,6 @@ $('form').submit(function(e){
 });
 
 var stars = $('form label span.star');
-console.log(stars);
 
 stars.mouseover(function(e){
     changeColor(e);
@@ -74,15 +73,16 @@ var reviews = (function () {
                     if (rate === 5){
                        reviewP5.push(rate);
                     }else if (rate === 4){
-                       reviewP4.push(rate); 
+                       reviewP4.push(rate);
                     }else if (rate === 3){
-                       reviewP3.push(rate); 
+                       reviewP3.push(rate);
                     }else if (rate === 2){
-                       reviewP2.push(rate); 
+                       reviewP2.push(rate);
                     }else{
-                       reviewP1.push(rate); 
+                       reviewP1.push(rate);
                     }
                     reviewsSum(rate);
+                    changeCSS();
                 }
             };
 })();
@@ -104,7 +104,6 @@ function ratesFunctions(){
 
 function colorStars(avg){
     var avgw = Math.round(avg);
-    console.log(avgw);
     $('div.title-avg span.star').each(function(i, el) {
         if ($(el).index() < avgw) {
             $(el).html('&#9733;');
@@ -115,4 +114,18 @@ function colorStars(avg){
 function reviewsSum(rate){ 
     let a = "get" + rate +"Stars";
     $('.total-rates-no' + rate + '').text(reviews[a]().length);
+    
+};
+
+function changeCSS(){
+    for (let i=1; i<6; i++){
+        let aa = reviews["get" + i +"Stars"]().length;
+        if (aa !==0){
+            let b = (aa) /(reviews.getAll().length);
+            let porsent = Math.floor( b * 100);
+            let porsentLeft = 100 - porsent;
+            $('.passNo' + i + '').css({ "background-image": "linear-gradient(to right, black "+ porsent+"% ,transparent "+ porsent+"%)"});
+            $('.passNo' + i + '').text(porsent+"%");            
+        }      
+    }
 };
