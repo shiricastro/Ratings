@@ -3,6 +3,7 @@ $('form').submit(function(e){
     var result =$('form label span.activ').length;
     cleanStar();
     reviews.push(result);
+    reviews.ReviwesPush(result);
 });
 
 var stars = $('form label span.star');
@@ -52,13 +53,38 @@ function cleanStar(){
 
 var reviews = (function () {
 	var container = [];
+        var reviewP5 =[];
+        var reviewP4 =[];
+        var reviewP3 =[];
+        var reviewP2 =[];
+        var reviewP1 =[];
+        
 	return {
 		getAll: function () {return container;},
+                get5Stars: function () {return reviewP5;},
+                get4Stars: function () {return reviewP4;},
+                get3Stars: function () {return reviewP3;},
+                get2Stars: function () {return reviewP2;},
+                get1Stars: function () {return reviewP1;},
 		push: function (rate) {
 			container.push(rate);
 			ratesFunctions();
-		}
-	};
+		},
+                ReviwesPush: function(rate){
+                    if (rate === 5){
+                       reviewP5.push(rate);
+                    }else if (rate === 4){
+                       reviewP4.push(rate); 
+                    }else if (rate === 3){
+                       reviewP3.push(rate); 
+                    }else if (rate === 2){
+                       reviewP2.push(rate); 
+                    }else{
+                       reviewP1.push(rate); 
+                    }
+                    reviewsSum(rate);
+                }
+            };
 })();
 
 function ratesFunctions(){
@@ -75,6 +101,7 @@ function ratesFunctions(){
     
     colorStars(reviwsAvg);
 };
+
 function colorStars(avg){
     var avgw = Math.round(avg);
     console.log(avgw);
@@ -83,4 +110,9 @@ function colorStars(avg){
             $(el).html('&#9733;');
         };        
     });
+};
+
+function reviewsSum(rate){ 
+    let a = "get" + rate +"Stars";
+    $('.total-rates-no' + rate + '').text(reviews[a]().length);
 };
