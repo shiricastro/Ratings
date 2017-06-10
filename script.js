@@ -1,9 +1,11 @@
 $('form').submit(function(e){
     e.preventDefault();
     var result =$('form label span.activ').length;
-    cleanStar();
-    reviews.push(result);
-    reviews.ReviwesPush(result);
+    if (result !== 0){
+        cleanStar();
+        reviews.push(result);
+        reviews.ReviwesPush(result);
+    }
 });
 
 var stars = $('form label span.star');
